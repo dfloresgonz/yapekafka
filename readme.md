@@ -31,12 +31,11 @@ correr con live server el app.html
 
 ```mermaid
 sequenceDiagram
-Alice ->> Bob: Hello Bob, how are you?
-Bob-->>John: How about you John?
-Bob--x Alice: I am good thanks!
-Bob-x John: I am good thanks!
-Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
+Front ->> Backend: Yapear
+Backend-->>Kafka: Si es mayor a 500 (producer)
+Backend--x Front: Esperar código
+Kafka-x Backend: Generar código (consumer)
+Note right of Kafka: El consumer genera el codigo <br> y responde por websocket.
 
-Bob-->Alice: Checking with John...
-Alice->John: Yes... John, how are you?
+Backend-->>Front: Enviar código aprobación
 ```
