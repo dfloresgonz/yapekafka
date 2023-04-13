@@ -1,8 +1,5 @@
 'use strict'
 
-const express = require('express')
-const app     = express()
-const cors    = require('cors')
 const WebSocket = require('ws')
 const kafka = require('kafka-node')
 const PORTS = {
@@ -13,10 +10,6 @@ const PORTS = {
 const client   = new kafka.KafkaClient({kafkaHost: `127.0.0.1:${PORTS.kafka}`})
 const consumer = new kafka.Consumer(client, [ { topic: 'test' } ])
 const producer = new kafka.Producer(client)
-
-app.use(cors({ 'origin': '*' }))
-   .use(express.urlencoded({ limit: '5mb', extended: true }))
-   .use(express.json({ limit: '5mb' }))
 
 const wss = new WebSocket.Server({ port: PORTS.wss, path: "/yapear" })
 const clientws = new Map()
@@ -77,13 +70,6 @@ consumer.on('message', async (message) => {
 
 producer.on('ready', function() {
     console.log('producer ready .....')
-})
-    
-const server = app.listen(PORTS.rest, () => {
-    const host = server.address().address
-    const port = server.address().port
-    
-    console.log("Example app listening at http://%s:%s", host, port)
 })
 
 function uuidv4() {
