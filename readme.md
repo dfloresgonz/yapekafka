@@ -26,7 +26,8 @@ node service.js
 correr con live server el app.html
 ```
 
-## hola
+
+## Funcionalidad
 
 
 ```mermaid
