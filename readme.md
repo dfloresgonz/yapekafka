@@ -20,10 +20,10 @@ bin/kafka-topics.sh --create --topic test --bootstrap-server localhost:9092
 ## Instalación proyecto
 
 ```sh
-cd app-kafka
+cd app-kafka/back
 npm i
 node service.js
-correr con live server el app.html
+correr con live server el front/app.html
 ```
 
 
